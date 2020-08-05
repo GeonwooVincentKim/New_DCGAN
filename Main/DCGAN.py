@@ -32,3 +32,13 @@ image_size = 64
 batch_size = 128
 workers = 2
 
+
+train_set = datasets.ImageFolder(
+    root=dataroot,
+    transform=transforms.Compose([
+        transforms.Resize(image_size),
+        transforms.CenterCrop(image_size),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ])
+)
