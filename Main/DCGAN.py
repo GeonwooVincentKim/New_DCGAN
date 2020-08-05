@@ -21,3 +21,8 @@ BATCH_SIZE = 100
 USE_CUDA = torch.cuda.is_available()
 DEVICE = torch.device("cuda" if USE_CUDA else "cpu")
 print("Current Device : ", DEVICE)
+
+# Set Random Seed for reproductibility
+manualSeed = 999
+print("Random Seed : ", manualSeed)
+random.seed(manualSeed)
