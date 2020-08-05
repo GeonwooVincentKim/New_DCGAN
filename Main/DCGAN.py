@@ -42,3 +42,9 @@ train_set = datasets.ImageFolder(
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
 )
+
+train_loader = DataLoader(
+    train_set,
+    batch_size=batch_size,
+    shuffle=True, num_workers=workers
+)
