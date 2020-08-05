@@ -26,3 +26,9 @@ print("Current Device : ", DEVICE)
 manualSeed = 999
 print("Random Seed : ", manualSeed)
 random.seed(manualSeed)
+
+dataroot = '../data/'
+image_size = 64
+batch_size = 128
+workers = 2
+
