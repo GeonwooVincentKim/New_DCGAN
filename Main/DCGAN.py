@@ -8,7 +8,8 @@ from torch import nn, optim, backends
 from torch.utils.data import TensorDataset, DataLoader
 
 from torchvision import datasets, transforms
-from torchvision.utils import save_image
+import torchvision.utils as vutils
+# from torchvision.utils import save_image
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,6 +27,7 @@ print("Current Device : ", DEVICE)
 manualSeed = 999
 print("Random Seed : ", manualSeed)
 random.seed(manualSeed)
+torch.manual_seed(manualSeed)
 
 dataroot = '../data/'
 image_size = 64
@@ -48,3 +50,4 @@ train_loader = DataLoader(
     batch_size=batch_size,
     shuffle=True, num_workers=workers
 )
+
