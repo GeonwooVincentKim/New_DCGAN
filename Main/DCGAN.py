@@ -29,11 +29,15 @@ print("Random Seed : ", manualSeed)
 random.seed(manualSeed)
 torch.manual_seed(manualSeed)
 
+# Store Image-information data and
+# Model-Batch-Size information
+# at several variables.
 dataroot = '../data/'
 image_size = 64
 batch_size = 128
 workers = 2
 ngpu = 1
+
 
 
 train_set = datasets.ImageFolder(
