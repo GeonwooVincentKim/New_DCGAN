@@ -36,8 +36,16 @@ dataroot = '../data/'
 image_size = 64
 batch_size = 128
 workers = 2
-ngpu = 1
+ngpu = 1  # The Number of available 'gpu'.
 
+# Image-Data Information
+nc = 3
+nz = 100
+ngf = 64
+ndf = 64
+num_epochs = 5
+lr = 0.0002
+betal = 0.5
 
 
 train_set = datasets.ImageFolder(
