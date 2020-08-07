@@ -164,6 +164,7 @@ class Generator(nn.Module):
                 4, 2, 1, bias=False
             ),
             nn.Tanh()
+            # nc * 64 * 64
         ),
 
     def forward(self, input):
