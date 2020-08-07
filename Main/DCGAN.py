@@ -36,7 +36,6 @@ dataroot = '../data/'
 image_size = 64
 batch_size = 128
 workers = 2
-ngpu = 1  # The Number of available 'gpu'.
 
 
 """
@@ -45,14 +44,21 @@ ngpu = 1  # The Number of available 'gpu'.
     - 2. nc : Length of Hidden-Vector.
     - 3. ngf : Length of Feature-Map through Generator.
     - 4. gdf : Length of Feature-Map through Discriminator.
+    
+    - 5. num_epochs : Number of training-epoch.
+    - 6. Learning-Rate that applied in Training-Model.
+    - 7. betal : Hyper-Parameter for Adam-optimizer.
+    - 8. ngpu : Number of available gpu.
 """
 nc = 3
 nz = 100
 ngf = 64
 ndf = 64
+
 num_epochs = 5
 lr = 0.0002
 betal = 0.5
+ngpu = 1
 
 
 train_set = datasets.ImageFolder(
