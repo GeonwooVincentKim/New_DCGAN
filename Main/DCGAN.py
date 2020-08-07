@@ -38,7 +38,14 @@ batch_size = 128
 workers = 2
 ngpu = 1  # The Number of available 'gpu'.
 
-# Image-Data Information
+
+"""
+    Image-Data Information
+    - 1. nc : Number of Input-Image of Color-Channel.
+    - 2. nc : Length of Hidden-Vector.
+    - 3. ngf : Length of Feature-Map through Generator.
+    - 4. gdf : Length of Feature-Map through Discriminator.
+"""
 nc = 3
 nz = 100
 ngf = 64
