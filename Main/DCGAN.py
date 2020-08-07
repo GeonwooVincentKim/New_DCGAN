@@ -73,7 +73,7 @@ train_set = datasets.ImageFolder(
 )
 
 train_loader = torch.utils.data.DataLoader(
-    train_set,
+    dataset=train_set,
     batch_size=batch_size,
     shuffle=True, num_workers=workers
 )
@@ -83,7 +83,7 @@ train_loader = torch.utils.data.DataLoader(
     Pytorch represent modules that can handle data easily.    
 """
 z = torch.randn(BATCH_SIZE, 64).to(DEVICE)
-# real_batch = next(iter(train_loader))
+real_batch = next(iter(train_loader))
 plt.figure(figsize=(10, 10))
 plt.axis("off")
 plt.title("Training-Images")
