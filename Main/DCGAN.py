@@ -166,6 +166,9 @@ class Generator(nn.Module):
             nn.Tanh()
         ),
 
+    def forward(self, input):
+        return self.main(input)
+
 
 # def run():
 #     torch.multiprocessing.freeze_support()
