@@ -82,18 +82,18 @@ train_loader = torch.utils.data.DataLoader(
     Pytorch represent modules that can handle data easily.    
 """
 z = torch.randn(BATCH_SIZE, 64).to(DEVICE)
-real_batch = next(iter(train_loader))
+# real_batch = next(iter(train_loader))
 plt.figure(figsize=(10, 10))
 plt.axis("off")
 plt.title("Training-Images")
 
-plt.imshow(np.transpose(vutils.make_grid(
-            real_batch[0].to(DEVICE)[:64],
-            padding=2, normalize=True
-        ).cpu(),
-        (1, 2, 0)
-    )
-)
+# plt.imshow(np.transpose(vutils.make_grid(
+#             real_batch[0].to(DEVICE)[:64],
+#             padding=2, normalize=True
+#         ).cpu(),
+#         (1, 2, 0)
+#     )
+# )
 plt.show()
 
 
@@ -112,6 +112,36 @@ def weights_init(m):
         nn.init.normal_(m.weight.data, 1.0, 0.02)
         nn.init.constant_(m.bias.data, 0)
 
+
+"""
+    Generator
+"""
+
+
+class Generator(nn.Module):
+    def __init__(self, ngpu):
+        super(Generator, self).__init__()
+        self.ngpu = ngpu
+        self.main = nn.Sequential(
+            # Input : X Vector
+            nn.ConvTranspose2d(
+                in_channels=nz,
+                out_channels=ngf * 8,
+                kernel_size=4,
+                stride=1, padding=0,
+                bias=False
+            ),
+            nn.BatchNorm2d(ngf * 8),
+            nn.ReLU(True),
+
+            # State Size, (ngf * 8) * 4 * 4
+            nn.ConvTranspose2d(
+                ngf * 8, ngf * 4,
+                4, 2, 1, bias=False
+            ),
+            nn.BatchNorm2d(ngf * 4),
+            nn.ReLU(True),
+        )
 
 # def run():
 #     torch.multiprocessing.freeze_support()
