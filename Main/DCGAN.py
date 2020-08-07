@@ -141,7 +141,31 @@ class Generator(nn.Module):
             ),
             nn.BatchNorm2d(ngf * 4),
             nn.ReLU(True),
-        )
+
+            # (ngf * 4) * 8 * 8
+            nn.ConvTranspose2d(
+                ngf * 4, ngf * 2,
+                4, 2, 1, bias=False
+            ),
+            nn.BatchNorm2d(ngf * 2),
+            nn.ReLU(True),
+
+            # (ngf * 2) * 16 * 16
+            nn.ConvTranspose2d(
+                ngf * 2, ngf * 2,
+                4, 2, 1, bias=False
+            ),
+            nn.BatchNorm2d(ngf),
+            nn.ReLU(True),
+
+            # ngf * 32 * 32
+            nn.ConvTranspose2d(
+                ngf, nc,
+                4, 2, 1, bias=False
+            ),
+            nn.Tanh()
+        ),
+
 
 # def run():
 #     torch.multiprocessing.freeze_support()
