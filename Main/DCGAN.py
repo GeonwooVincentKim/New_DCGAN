@@ -2,6 +2,7 @@ from __future__ import print_function
 import argparse
 import os
 import random
+from multiprocessing.dummy import freeze_support
 
 import torch
 from torch import nn, optim, backends
@@ -71,7 +72,7 @@ train_set = datasets.ImageFolder(
     ])
 )
 
-train_loader = DataLoader(
+train_loader = torch.utils.data.DataLoader(
     train_set,
     batch_size=batch_size,
     shuffle=True, num_workers=workers
@@ -94,3 +95,12 @@ plt.imshow(np.transpose(vutils.make_grid(
         (1, 2, 0)
     )
 )
+
+
+def run():
+    torch.multiprocessing.freeze_support()
+    print("loop")
+
+
+if __name__ == "__main__":
+    freeze_support()
