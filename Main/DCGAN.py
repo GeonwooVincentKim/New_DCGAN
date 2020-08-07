@@ -33,6 +33,7 @@ dataroot = '../data/'
 image_size = 64
 batch_size = 128
 workers = 2
+ngpu = 1
 
 
 train_set = datasets.ImageFolder(
@@ -51,3 +52,4 @@ train_loader = DataLoader(
     shuffle=True, num_workers=workers
 )
 
+device = torch.device("cuda:0" if (torch.cuda.is_available() and ngpu > 0) else "cpu")
