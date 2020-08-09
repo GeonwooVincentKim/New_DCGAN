@@ -8,7 +8,6 @@ iters = 0
 
 print("Starting Training Loop...")
 
-
 # Using for-each epoch
 for epoch in range(num_epochs):
     # for each batch
@@ -22,7 +21,7 @@ for epoch in range(num_epochs):
         real_cpu = data[0].to(DEVICE)
         b_size = real_cpu.size(0)
         label = torch.full(
-            (b_size, ), real_label,
+            (b_size,), real_label,
             device=DEVICE
         )
 
@@ -57,5 +56,17 @@ for epoch in range(num_epochs):
         output = netD(fake).view(-1)
         errG = criterion(output, label)
         errG.backward()
-        D_g_z2 = output.mean().item()
+        D_G_z2 = output.mean().item()
 
+        optimizerG.step()
+
+        if i % 50 == 0:
+            print("[%d %d] [%d %d]\t "
+                  "Loss_D : %.4f\t Loss_G : %.4f\t"
+                  "D(x) : %.4f\t D(G(z)) : %.4f / %.4f" % (
+                      epoch, num_epochs, i, len(train_loader),
+                      errD.item(), errG.item(), D_x, D_G_z1, D_G_z2
+                  ))
+
+            G_losses.append(errG.item())
+            D_losses.append(errD.item())
