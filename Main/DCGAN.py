@@ -233,6 +233,14 @@ class Discriminator(nn.Module):
         return self.main(input)
 
 
+netD = Discriminator(ngpu).to(DEVICE)
+
+if(DEVICE.type == "cuda") and (ngpu > 1):
+    netD = nn.DataParallel(netD, list(range(ngpu)))
+
+netD.apply(weights_init)
+print(netD)
+
 # def run():
 #     torch.multiprocessing.freeze_support()
 #     print("loop")
