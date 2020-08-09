@@ -241,6 +241,21 @@ if(DEVICE.type == "cuda") and (ngpu > 1):
 netD.apply(weights_init)
 print(netD)
 
+"""
+    Loss Functions and Optimizers
+"""
+criterion = nn.BCELoss()
+fixed_noise = torch.randn(
+     64, nz, 1, 1,
+     device=DEVICE
+)
+real_label = 1
+fake_label = 0
+
+optimizerD = optim.Adam(netD.parameters(), lr=lr, betas=(betal, 0.999))
+optimizerG = optim.Adam(netG.parameters(), lr=lr, betas=(betal, 0.999))
+
+
 # def run():
 #     torch.multiprocessing.freeze_support()
 #     print("loop")
