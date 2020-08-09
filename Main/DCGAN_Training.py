@@ -35,3 +35,12 @@ for epoch in range(num_epochs):
         )
         fake = netG(noise)
         label.fill_(fake_label)
+
+        output = netD(fake.detach()).view(-1)
+        errD_fake = criterion(output, label)
+        errD_fake.backward()
+        D_G_z1 = output.mean().item()
+        errD = errD_real + errD_fake
+
+        optimizerD.step()
+
