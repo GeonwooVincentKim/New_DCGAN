@@ -252,8 +252,8 @@ fixed_noise = torch.randn(
 real_label = 1
 fake_label = 0
 
-optimizerD = optim.Adam(netD.parameters(), lr=lr, betas=(beta1, 0.999))
-optimizerG = optim.Adam(netG.parameters(), lr=lr, betas=(beta1, 0.999))
+optimizerD = list(netD.parameters())
+optimizerG = list(netG.parameters())
 
 
 # def run():
