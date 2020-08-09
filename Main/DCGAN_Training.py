@@ -27,3 +27,11 @@ for epoch in range(num_epochs):
         errD_real = criterion(output, label)
         errD_real.backward()
         D_x = output.mean().item()
+
+        # Train with All-Fake-Batch
+        noise = torch.randn(
+            b_size, nz, 1, 1,
+            device=DEVICE
+        )
+        fake = netG(noise)
+        label.fill_(fake_label)
