@@ -50,6 +50,7 @@ workers = 2
     - 7. betal : Hyper-Parameter for Adam-optimizer.
     - 8. ngpu : Number of available gpu.
 """
+z_dim = 10
 nc = 3
 nz = 100
 ngf = 64
@@ -73,7 +74,7 @@ train_set = datasets.ImageFolder(
 
 train_loader = torch.utils.data.DataLoader(
     dataset=train_set,
-    batch_size=BATCH_SIZE,
+    batch_size=IMAGE_SIZE,
     shuffle=True, num_workers=workers
 )
 
