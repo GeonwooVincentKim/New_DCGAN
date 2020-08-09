@@ -76,3 +76,9 @@ for epoch in range(num_epochs):
                     fake = netG(fixed_noise).detach().cpu()
                 img_list.append(vutils.make_grid(fake, padding=2, normalize=True))
             iters += 1
+
+
+plt.figure(figsize=(10, 5))
+plt.title("Generator and Discriminator Loss During Training")
+plt.plot(G_losses, label="G")
+plt.plot(D_losses, label="D")
