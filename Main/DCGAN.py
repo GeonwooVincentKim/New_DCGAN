@@ -229,6 +229,10 @@ class Discriminator(nn.Module):
             nn.Sigmoid()
         )
 
+    def forward(self, input):
+        return self.main(input)
+
+
 # def run():
 #     torch.multiprocessing.freeze_support()
 #     print("loop")
