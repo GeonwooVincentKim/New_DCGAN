@@ -179,6 +179,17 @@ if(DEVICE.type == "cuda") and (ngpu > 1):
 netG.apply(weights_init)
 print(netG)
 
+
+"""
+    Discriminator
+"""
+
+
+class Discriminator(nn.Module):
+    def __init__(self, ngpu):
+        super(Discriminator, self).__init__()
+        self.ngpu = ngpu
+
 # def run():
 #     torch.multiprocessing.freeze_support()
 #     print("loop")
