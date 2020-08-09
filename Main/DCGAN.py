@@ -171,14 +171,13 @@ class Generator(nn.Module):
         return self.main
 
 
-if __name__ == "__main__":
-    netG = Generator(ngpu).to(DEVICE)
+netG = Generator(ngpu).to(DEVICE)
 
-    if(DEVICE.type == "cuda") and (ngpu > 1):
-        netG = nn.DataParallel(netG, list(range(ngpu)))
+if(DEVICE.type == "cuda") and (ngpu > 1):
+    netG = nn.DataParallel(netG, list(range(ngpu)))
 
-    netG.apply(weights_init)
-    print(netG)
+netG.apply(weights_init)
+print(netG)
 
 # def run():
 #     torch.multiprocessing.freeze_support()
