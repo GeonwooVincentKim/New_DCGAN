@@ -15,6 +15,9 @@ for epoch in range(num_epochs):
     for i, data in enumerate(train_loader, 0):
         # Update 0
         # Train with All-Real-Batch.
+        """
+            Zero-gradient of netD.
+        """
         netD.zero_grad()
         real_cpu = data[0].to(DEVICE)
         b_size = real_cpu.size(0)
@@ -43,4 +46,16 @@ for epoch in range(num_epochs):
         errD = errD_real + errD_fake
 
         optimizerD.step()
+
+        """
+            Zero-gradient of netG.
+        """
+        # Update G
+        netG.zero_grad()
+        label.fill_(real_label)
+
+        output = netD(fake).view(-1)
+        errG = criterion(output, label)
+        errG.backward()
+        D_g_z2 = output.mean().item()
 
