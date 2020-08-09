@@ -57,7 +57,7 @@ ndf = 64
 
 num_epochs = 5
 lr = 0.0002
-betal = 0.5
+beta1 = 0.5
 ngpu = 1
 
 
@@ -252,8 +252,8 @@ fixed_noise = torch.randn(
 real_label = 1
 fake_label = 0
 
-optimizerD = optim.Adam(netD.parameters(), lr=lr, betas=(betal, 0.999))
-optimizerG = optim.Adam(netG.parameters(), lr=lr, betas=(betal, 0.999))
+optimizerD = optim.Adam(netD.parameters(), lr=lr, betas=(beta1, 0.999))
+optimizerG = optim.Adam(netG.parameters(), lr=lr, betas=(beta1, 0.999))
 
 
 # def run():

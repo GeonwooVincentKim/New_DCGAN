@@ -22,3 +22,8 @@ for epoch in range(num_epochs):
             (b_size, ), real_label,
             device=DEVICE
         )
+
+        output = netD(real_cpu).view(-1)
+        errD_real = criterion(output, label)
+        errD_real.backward()
+        D_x = output.mean().item()
