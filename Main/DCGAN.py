@@ -258,12 +258,3 @@ optimizerG = list(netG.parameters())
     optimizerD = optim.Adam(netD.parameters(), lr=lr, betas=(beta1, 0.9999))
     optimizerG = optim.Adam(netG.parameters(), lr=lr, betas=(beta1, 0.9999))
 """
-
-
-# def run():
-#     torch.multiprocessing.freeze_support()
-#     print("loop")
-#
-#
-# if __name__ == "__main__":
-#     freeze_support()
